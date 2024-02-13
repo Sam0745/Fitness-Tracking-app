@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="you_need_to_accept_location_permissions_to_use_this_app">You need to accept location permissions to use this app.</string>
+</resources>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">FitnessTrackingApp</string>
+    <string name="google_maps_key">AIzaSyAcKeBmjh2jSdJe1Oqu6VZ1IMoAECS8C6I</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sort_by">sort by:</string>
+    <string name="you_need_to_accept_location_permissions_to_use_this_app">You need to accept location permissions to use this app.</string>
+    <string name="running_app">Running App</string>
+
+    <string-array name="filter_options">
+        <item>Date</item>
+        <item>Running Time</item>
+        <item>Distance</item>
+        <item>Average Speed</item>
+        <item>Calories Burned</item>
+    </string-array>
+</resources>
