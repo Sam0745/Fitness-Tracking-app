@@ -16,6 +16,7 @@ import com.example.fitnesstrackingapp.other.Constants.ACTION_START_OR_RESUME_SER
 import com.example.fitnesstrackingapp.other.Constants.MAP_ZOOM
 import com.example.fitnesstrackingapp.other.Constants.POLYLINE_COLOR
 import com.example.fitnesstrackingapp.other.Constants.POLYLINE_WIDTH
+import com.example.fitnesstrackingapp.other.TrackingUtility
 import com.example.fitnesstrackingapp.services.Polyline
 import com.example.fitnesstrackingapp.services.TrackingService
 import com.example.fitnesstrackingapp.ui.viewmodels.MainViewModel
@@ -24,6 +25,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.PolylineOptions
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.currentCoroutineContext
 
 @AndroidEntryPoint
 class TrackingFragment : Fragment() {
@@ -33,6 +35,7 @@ class TrackingFragment : Fragment() {
     private var map: GoogleMap? = null
     private var isTracking = false
     private var pathPoint = mutableListOf<Polyline>()
+    private var curTimeInMills = 0L
 
 
     override fun onCreateView(
@@ -67,6 +70,12 @@ class TrackingFragment : Fragment() {
             pathPoint = it
             addLatestPolyline()
             moveCameraToUser()
+        })
+
+        TrackingService.timeRunInMillis.observe(viewLifecycleOwner,Observer{
+            curTimeInMills = it
+            val formattedTime = TrackingUtility.getFormattedStopWatchTime(curTimeInMills,true)
+            mBinding.tvTimer.text = formattedTime
         })
     }
 
