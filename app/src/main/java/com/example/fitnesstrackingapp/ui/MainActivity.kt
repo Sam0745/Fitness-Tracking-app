@@ -20,7 +20,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
     private var navHostFragment: NavHostFragment = NavHostFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {

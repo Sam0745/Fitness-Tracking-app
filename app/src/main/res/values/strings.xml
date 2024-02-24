@@ -7,6 +7,9 @@
     <string name="you_need_to_accept_location_permissions_to_use_this_app">You need to accept location permissions to use this app.</string>
     <string name="running_app">Running App</string>
     <string name="run_saved_successfully">Run saved successfully</string>
+    <string name="saved_changes">Saved changes</string>
+    <string name="please_fill_out_all_the_fields">Please fill out all the fields)</string>
+    <string name="avg_speed_over_time">Avg Speed over Time</string>
 
     <string-array name="filter_options">
         <item>Date</item>

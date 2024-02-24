@@ -38,6 +38,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.currentCoroutineContext
 import java.util.Calendar
+import javax.inject.Inject
 import kotlin.math.round
 
 @AndroidEntryPoint
@@ -50,7 +51,9 @@ class TrackingFragment : Fragment() {
     private var pathPoint = mutableListOf<Polyline>()
     private var curTimeInMills = 0L
     private var menu: Menu? = null
-    private var weight = 80f
+
+    @set:Inject
+    var weight = 80f
 
 
     override fun onCreateView(
@@ -70,7 +73,7 @@ class TrackingFragment : Fragment() {
             toggleRun()
         }
 
-        mBinding.btnFinishRun.setOnClickListener{
+        mBinding.btnFinishRun.setOnClickListener {
             zoomToSeeWholeTrack()
             endRunAndSaveToDb()
         }
@@ -176,6 +179,7 @@ class TrackingFragment : Fragment() {
             mBinding.btnFinishRun.visibility = View.GONE
         }
     }
+
     private fun endRunAndSaveToDb() {
         map?.snapshot { bmp ->
             var distanceInMeters = 0
@@ -184,9 +188,10 @@ class TrackingFragment : Fragment() {
             }
             val avgSpeed =
                 round((distanceInMeters / 1000f) / (curTimeInMills / 1000f / 60 / 60) * 10) / 10f
-            val dateTimestamp =  Calendar.getInstance().timeInMillis
-            val caloriesBurned = ((distanceInMeters / 1000f)* weight).toInt()
-            val run = Run(bmp,dateTimestamp,avgSpeed,distanceInMeters,curTimeInMills,caloriesBurned)
+            val dateTimestamp = Calendar.getInstance().timeInMillis
+            val caloriesBurned = ((distanceInMeters / 1000f) * weight).toInt()
+            val run =
+                Run(bmp, dateTimestamp, avgSpeed, distanceInMeters, curTimeInMills, caloriesBurned)
             viewModel.insertRun(run)
             Snackbar.make(
                 requireActivity().findViewById(R.id.rootView),
